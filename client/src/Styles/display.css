@@ -1,0 +1,160 @@
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.d-block{
+    display: block;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.align-initial{
+    align-items: initial !important;
+}
+
+.center {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.f-row {
+    flex-direction: row;
+}
+
+.f-col-reverse {
+    flex-direction: column-reverse;
+}
+
+.g-0-5{
+    gap: 0.5rem;
+}
+
+.g-1 {
+    gap: 1rem;
+}
+
+.g-2 {
+    gap: 2rem;
+}
+
+.g-3 {
+    gap: 3rem;
+}
+
+
+.grid {
+    display: grid;
+}
+
+.grid-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+}
+
+.grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+}
+
+.grid-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+}
+
+.grid-7 {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-items: center;
+}
+
+@media (768px < width <= 1024px) {
+    .grid-lg-1 {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .grid-lg-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+
+    .grid-lg-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+    }
+
+    .grid-lg-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+    }
+}
+
+@media (500px < width <= 768px) {
+    .grid-md-1 {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+    }
+
+    .grid-md-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+}
+
+@media (width < 500px) {
+    .grid-sm-1 {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .grid-sm-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
