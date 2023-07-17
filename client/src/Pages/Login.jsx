@@ -71,7 +71,12 @@ const Login = () => {
                   "Log In"
                 )}
               </button>
-              <button className={"btn-lg btn-blue"}>
+              <button
+                className={"btn-lg btn-blue"}
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <NavLink to={"/register"} className={"text-white"}>
                   Sign Up
                 </NavLink>

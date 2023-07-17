@@ -9,8 +9,7 @@ const appContext = React.createContext(undefined);
 // eslint-disable-next-line react/prop-types
 const AppProvider = ({ children }) => {
   const api = import.meta.env.VITE_API_KEY;
-  console.log(api);
-  // -------------- Log in Field -------------------------->
+  // -------------------------------------- Log in Field ----------------------------------------------->
   const [loginData, setLoginData] = useState({
     mail: "",
     pass: "",
@@ -27,7 +26,7 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     setislogLoading(true);
     try {
-      const res = await axios.post("http://localhost:4001/loginUser", {
+      const res = await axios.post(`${api}/loginUser`, {
         ...loginData,
       });
 
@@ -59,11 +58,60 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  // End of login ------------>
+  //------------------------------------------------------- End of login ========================------------>
+
+  //---------------------------------------------------Start Register Part ---------------------------------->
+  const [regData, setRegData] = useState({
+    name: "",
+    prof: "",
+    mail: "",
+    pass: "",
+    cPass: "",
+  });
+
+  const regCahngeHandler = (e) => {
+    const { name, value } = e.target;
+    setRegData({ ...regData, [name]: value });
+  };
+
+  const registerHandler = async (e) => {
+    e.preventDefault();
+    setislogLoading(true);
+    try {
+      const response = await axios.post(`${api}/createUser`, { ...regData });
+      if (response.status===201){
+        setislogLoading(false);
+        toast.success(response.data.msg, {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        setislogLoading(false);
+        toast.error(error.response.data.err, {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "light",
+        });
+      }
+    }
+  };
+
   return (
     // eslint-disable-next-line react/no-children-prop
     <appContext.Provider
-      value={{ loginData, loginChangeHandler, loginHandler,isloginLoading,isLogin}}
+      value={{
+        loginData,
+        loginChangeHandler,
+        loginHandler,
+        isloginLoading,
+        isLogin,
+        regCahngeHandler,
+        regData,
+        registerHandler,
+      }}
     >
       {children}
     </appContext.Provider>
