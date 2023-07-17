@@ -44,7 +44,7 @@ const loginUser = async (req, res) => {
             res.status(401).json({err: "Log in failed! Unauthorized Credential"});
         }
     } catch (err) {
-        res.status(401).json({err: "Log in failed! Unauthorized Credential"});
+        console.log(err);
     }
 }
 

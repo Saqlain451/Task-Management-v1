@@ -1,4 +1,4 @@
-.btn{
+.btn {
     padding: 1.2rem 3.5rem;
     display: flex;
     align-items: center;
@@ -8,7 +8,8 @@
     border: none;
     cursor: pointer;
 }
-.btn-lg{
+
+.btn-lg {
     width: 100%;
     height: 3.7rem;
     border: none;
@@ -18,9 +19,29 @@
 }
 
 
-.btn-blue{
+.btn-blue {
     background-color: var(--color-blue);
 }
-.btn-gray{
+
+.btn-gray {
     background: var(--color-gray-blue);
 }
+
+.btn-loader {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-gray-blue);
+    border-top-color: var(--color-blue);
+    animation: loading 4s linear infinite;
+}
+
+@keyframes loading {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+}
+
