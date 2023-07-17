@@ -65,7 +65,7 @@ const Register = () => {
                 <AiFillLock />{" "}
               </span>
               <input
-                type="text"
+                type="password"
                 name="name"
                 placeholder={"Password"}
                 className={"form-control"}
@@ -78,7 +78,7 @@ const Register = () => {
                 <MdLockPerson />
               </span>
               <input
-                type="text"
+                type="password"
                 name="name"
                 placeholder={"Confirm Password"}
                 className={"form-control"}
