@@ -12,7 +12,7 @@ app.use(cors());
 //  Use all the routers --------->
 app.use(userRouter);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4001;
 const url = process.env.MONGO_URI;
 
 

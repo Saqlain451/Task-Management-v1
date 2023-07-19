@@ -31,17 +31,10 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    border: 2px solid var(--color-gray-blue);
+    border: 3px solid var(--color-gray-blue);
     border-top-color: var(--color-blue);
     animation: loading 4s linear infinite;
 }
 
-@keyframes loading {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(360deg);
-    }
-}
+
 
