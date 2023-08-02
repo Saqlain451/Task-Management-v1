@@ -13,9 +13,9 @@ import { AppProvider } from "./Hooks/Context.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Router>
-    <AppProvider>
+  <AppProvider>
+    <Router>
       <App />
-    </AppProvider>
-  </Router>,
+    </Router>
+  </AppProvider>,
 );

@@ -33,8 +33,15 @@
     border-radius: 50%;
     border: 3px solid var(--color-gray-blue);
     border-top-color: var(--color-blue);
-    animation: loading 4s linear infinite;
+    animation: loading 1s linear infinite;
 }
 
-
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 

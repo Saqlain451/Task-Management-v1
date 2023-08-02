@@ -25,3 +25,7 @@ html{
 .text-gray{
     color: var(--color-gray-blue);
 }
+
+.pointer{
+    cursor: pointer;
+}
