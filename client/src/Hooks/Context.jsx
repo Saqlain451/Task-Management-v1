@@ -98,6 +98,9 @@ const AppProvider = ({ children }) => {
       }
     }
   };
+  // -------------------- show modal ---------------------->
+
+  const [isShowModal, setIsShowModel] = useState(false);
 
   return (
     // eslint-disable-next-line react/no-children-prop
@@ -111,6 +114,9 @@ const AppProvider = ({ children }) => {
         regCahngeHandler,
         regData,
         registerHandler,
+        isShowModal,
+        setIsShowModel,
+        api
       }}
     >
       {children}

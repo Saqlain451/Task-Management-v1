@@ -49,11 +49,11 @@ form {
     caret-color: var(--color-blue);
 }
 
-input, textarea {
+input, .textarea {
     height: 4.3rem;
 }
 
-textarea {
+.textarea {
     height: 18rem;
     padding: 2rem;
 }

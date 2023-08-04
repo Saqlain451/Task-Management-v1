@@ -1,7 +1,12 @@
 import { BsFillHandbagFill } from "react-icons/bs";
 import { IoIosAddCircle } from "react-icons/io";
 
-const TaskHeader = () => {
+import {useState} from "react";
+
+// eslint-disable-next-line react/prop-types
+const TaskHeader = ({btnClick}) => {
+
+
   return (
     <>
       <div
@@ -16,7 +21,7 @@ const TaskHeader = () => {
           <li className={"pointer text-blue-gray fw-5"}>Pending</li>
           <li className={"pointer text-blue-gray fw-5"}>Completed</li>
         </ul>
-        <div className="btn-add d-flex center pointer">
+        <div className="btn-add d-flex center pointer" onClick={btnClick}>
           <span className={"fs-1-5 text-gray"}>
             <IoIosAddCircle />
           </span>

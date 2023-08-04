@@ -2,9 +2,9 @@ import Tasks from "../model/TaskModel.js";
 
 const createTask = async (req, res) => {
   try {
-    const { mail, taskTitle, taskDes, status, startTime } = req.body;
+    const { mail, taskTitle, taskDes, startTime } = req.body;
 
-    if (!mail || !taskTitle || !taskDes || !status || !startTime) {
+    if (!mail || !taskTitle || !taskDes || !startTime) {
       return res.status(401).json({
         err: "All fields should be filled",
       });
@@ -16,15 +16,11 @@ const createTask = async (req, res) => {
     }
 
     const newTaskData = new Tasks({
-      mail,
-      taskTitle,
-      taskDes,
-      status,
-      startTime,
+      ...req.body,
     });
     await newTaskData.save();
 
-    res.status(201).json({ msg: "Task is Added", task: newTaskData });
+    res.status(201).json({ msg: "Task is Added" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ err: "Internal Server Error" });
@@ -42,7 +38,5 @@ const getAllTask = async (req, res) => {
     console.error(error);
   }
 };
-
-
 
 export { createTask, getAllTask };
