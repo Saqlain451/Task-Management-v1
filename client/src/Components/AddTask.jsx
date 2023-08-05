@@ -1,49 +1,9 @@
 import { useGlobalHook } from "../Hooks/Context.jsx";
-import { useState } from "react";
-import Cookies from "js-cookie";
-import axios from "axios";
-import { toast } from "react-toastify";
 
 const AddTask = () => {
-  const { setIsShowModel, api } = useGlobalHook();
-  const [addData, setAddData] = useState({
-    taskTitle: "",
-    taskDes: "",
-    startTime: "",
-  });
+  const { setIsShowModel, addData, changeChandle, submitHandler, isLoading } =
+    useGlobalHook();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const changeChandle = (e) => {
-    const { name, value } = e.target;
-    setAddData({ ...addData, [name]: value });
-  };
-
-  const submitHandler = async () => {
-    setIsLoading(true);
-    const user = Cookies.get("user");
-    const userDet = JSON.parse(user);
-    const { mail } = userDet;
-    const newData = { ...addData, mail };
-    try {
-      const response = await axios.post(`${api}/addTask`, { ...newData });
-      if (response.status === 201) {
-        toast.success(response.data.msg, {
-          position: "top-center",
-          autoClose: 2000,
-          theme: "light",
-        });
-        setIsLoading(false);
-      }
-      setIsShowModel(false);
-    } catch (error) {
-      setIsLoading(false);
-      toast.error(error.response.data.err, {
-        position: "top-center",
-        autoClose: 2000,
-        theme: "light",
-      });
-    }
-  };
   return (
     <>
       <div

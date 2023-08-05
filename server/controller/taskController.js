@@ -51,4 +51,31 @@ const getPendingTask = async (req, res) => {
   }
 };
 
-export { createTask, getAllTask, getPendingTask };
+const updateStatus = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const existTask = await Tasks.findOne({ _id: id });
+    if (existTask) {
+      await Tasks.updateOne({ _id: id }, { $set: { status: "Working" } });
+      res.status(201).json({ msg: "Start working" });
+    }
+  } catch (error) {
+    res.status(501).json({ err: "Internal server error" });
+    console.error(error);
+  }
+};
+
+const completedTask = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const existTask = await Tasks.findOne({ _id: id });
+    if (existTask) {
+      await Tasks.updateOne({ _id: id }, { $set: { status: "Completed" } });
+      res.status(201).json({ msg: "Start working" });
+    }
+  } catch (error) {
+    res.status(501).json({ err: "Internal server error" });
+    console.error(error);
+  }
+};
+export { createTask, getAllTask, getPendingTask, updateStatus, completedTask };

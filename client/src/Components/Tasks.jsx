@@ -3,19 +3,37 @@ import { useGlobalHook } from "../Hooks/Context.jsx";
 import { useEffect } from "react";
 import Card from "./Card.jsx";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const Tasks = () => {
   const { setIsShowModel, getAllData, allTaskData, isBtnActive, api } =
     useGlobalHook();
 
-  const startWoking = ({ id }) => {
+  const startWoking = async ({ id }) => {
     console.log(id);
+    try {
+      const response = await axios.patch(`${api}/updateTask/working`, { id });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const completedTask = async ({ id }) => {
+    try {
+      const response = await axios.patch(`${api}/updateTask/completed`, { id });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
   useEffect(() => {
-    const user = Cookies.get("user");
-    const userDet = JSON.parse(user);
-    const { mail } = userDet;
-    getAllData(`${api}/getTask/${mail}`);
+    if (Cookies.get("user")) {
+      const user = Cookies.get("user");
+      const userDet = JSON.parse(user);
+      const { mail } = userDet;
+      getAllData(`${api}/getTask/${mail}`);
+    }
   }, []);
   return (
     <>
@@ -53,7 +71,7 @@ const Tasks = () => {
                     <Card
                       {...data}
                       key={_id}
-                      startWork={startWoking}
+                      startWork={completedTask}
                       id={_id}
                       btnName={"Completed"}
                     />

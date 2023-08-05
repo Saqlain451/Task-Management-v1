@@ -138,6 +138,46 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  // add task part ------------------------------>
+
+  const [addData, setAddData] = useState({
+    taskTitle: "",
+    taskDes: "",
+    startTime: "",
+  });
+
+  const changeChandle = (e) => {
+    const { name, value } = e.target;
+    setAddData({ ...addData, [name]: value });
+  };
+  const [isLoading, setIsLoading] = useState(false);
+  const submitHandler = async () => {
+    setIsLoading(true);
+    const user = Cookies.get("user");
+    const userDet = JSON.parse(user);
+    const { mail } = userDet;
+    const newData = { ...addData, mail };
+    try {
+      const response = await axios.post(`${api}/addTask`, { ...newData });
+      if (response.status === 201) {
+        toast.success(response.data.msg, {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "light",
+        });
+        setIsLoading(false);
+      }
+      setIsShowModel(false);
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.response.data.err, {
+        position: "top-center",
+        autoClose: 2000,
+        theme: "light",
+      });
+    }
+  };
+
   return (
     // eslint-disable-next-line react/no-children-prop
     <appContext.Provider
@@ -157,6 +197,10 @@ const AppProvider = ({ children }) => {
         allTaskData,
         isBtnActive,
         navBtnClick,
+        addData,
+        changeChandle,
+        submitHandler,
+        isLoading
       }}
     >
       {children}
