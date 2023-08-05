@@ -2,6 +2,7 @@ import { useGlobalHook } from "../Hooks/Context.jsx";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddTask = () => {
   const { setIsShowModel, api } = useGlobalHook();
@@ -26,12 +27,21 @@ const AddTask = () => {
     try {
       const response = await axios.post(`${api}/addTask`, { ...newData });
       if (response.status === 201) {
-        console.log(response.data.msg);
-        setIsShowModel(false);
+        toast.success(response.data.msg, {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "light",
+        });
+        setIsLoading(false);
       }
       setIsShowModel(false);
     } catch (error) {
-      console.error(error.response.data.err);
+      setIsLoading(false);
+      toast.error(error.response.data.err, {
+        position: "top-center",
+        autoClose: 2000,
+        theme: "light",
+      });
     }
   };
   return (

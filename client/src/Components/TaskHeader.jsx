@@ -1,11 +1,14 @@
 import { BsFillHandbagFill } from "react-icons/bs";
 import { IoIosAddCircle } from "react-icons/io";
 
+// eslint-disable-next-line no-unused-vars
 import {useState} from "react";
+import {useGlobalHook} from "../Hooks/Context.jsx";
 
 // eslint-disable-next-line react/prop-types
 const TaskHeader = ({btnClick}) => {
 
+  const { navBtnClick} = useGlobalHook();
 
   return (
     <>
@@ -17,9 +20,9 @@ const TaskHeader = ({btnClick}) => {
           <BsFillHandbagFill />
         </p>
         <ul className={"d-flex center g-3"}>
-          <li className={"pointer text-blue-gray fw-5"}>Active</li>
-          <li className={"pointer text-blue-gray fw-5"}>Pending</li>
-          <li className={"pointer text-blue-gray fw-5"}>Completed</li>
+          <li className={"pointer text-blue-gray fw-5"} onClick={navBtnClick}>Active</li>
+          <li className={"pointer text-blue-gray fw-5"} onClick={navBtnClick}>Pending</li>
+          <li className={"pointer text-blue-gray fw-5"} onClick={navBtnClick}>Completed</li>
         </ul>
         <div className="btn-add d-flex center pointer" onClick={btnClick}>
           <span className={"fs-1-5 text-gray"}>

@@ -39,4 +39,16 @@ const getAllTask = async (req, res) => {
   }
 };
 
-export { createTask, getAllTask };
+const getPendingTask = async (req, res) => {
+  const { mail, status } = req.params;
+  try {
+    const data = await Tasks.find({ mail, status });
+    data.length
+      ? res.status(201).json({ success: data })
+      : res.status(401).json({ err: "Don't have any data" });
+  } catch (error) {
+    res.status(501).json({ err: "Internal server Error" });
+  }
+};
+
+export { createTask, getAllTask, getPendingTask };

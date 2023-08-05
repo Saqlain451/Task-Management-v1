@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import Cookies from "js-cookie";
 
 //create context
@@ -79,7 +79,7 @@ const AppProvider = ({ children }) => {
     setislogLoading(true);
     try {
       const response = await axios.post(`${api}/createUser`, { ...regData });
-      if (response.status===201){
+      if (response.status === 201) {
         setislogLoading(false);
         toast.success(response.data.msg, {
           position: "top-center",
@@ -102,6 +102,42 @@ const AppProvider = ({ children }) => {
 
   const [isShowModal, setIsShowModel] = useState(false);
 
+  // ---------------------Get all task ----------------->
+  const [allTaskData, setAllTaskData] = useState([]);
+
+  const getAllData = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setAllTaskData(response.data.success);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // toggle button click functionality ----->
+
+  const [isBtnActive, setisBtnActive] = useState({
+    Active: true,
+    Pending: false,
+    Completed: false,
+  });
+
+  const navBtnClick = (e) => {
+    const user = Cookies.get("user");
+    const userDet = JSON.parse(user);
+    const { mail } = userDet;
+    const btnName = e.target.innerText;
+    setisBtnActive({ [btnName]: true });
+    if (btnName === "Active") {
+      getAllData(`${api}/getTask/${mail}`);
+    } else if (btnName === "Pending") {
+      getAllData(`${api}/getTask/${mail}/Working`);
+    } else if (btnName === "Completed") {
+      getAllData(`${api}/getTask/${mail}/Completed`);
+    }
+  };
+
   return (
     // eslint-disable-next-line react/no-children-prop
     <appContext.Provider
@@ -116,7 +152,11 @@ const AppProvider = ({ children }) => {
         registerHandler,
         isShowModal,
         setIsShowModel,
-        api
+        api,
+        getAllData,
+        allTaskData,
+        isBtnActive,
+        navBtnClick,
       }}
     >
       {children}
