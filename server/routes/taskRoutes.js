@@ -1,7 +1,7 @@
 import express from "express";
 import {
   completedTask,
-  createTask,
+  createTask, delTask,
   getAllTask,
   getPendingTask,
   updateStatus,
@@ -18,4 +18,6 @@ taskRouter.get("/getTask/:mail/:status", getPendingTask);
 taskRouter.patch("/updateTask/working", updateStatus);
 
 taskRouter.patch("/updateTask/completed", completedTask);
+
+taskRouter.delete("/deleteTask/:id", delTask);
 export default taskRouter;

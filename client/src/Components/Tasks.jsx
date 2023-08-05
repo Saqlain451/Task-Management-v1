@@ -27,6 +27,17 @@ const Tasks = () => {
       console.error(error);
     }
   };
+
+  const delTask = async ({ id }) => {
+    console.log(id)
+    try {
+      const response = await axios.delete(`${api}/deleteTask/${id}`);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (Cookies.get("user")) {
       const user = Cookies.get("user");
@@ -88,7 +99,7 @@ const Tasks = () => {
                     <Card
                       {...data}
                       key={_id}
-                      startWork={startWoking}
+                      startWork={delTask}
                       id={_id}
                       btnName={"Delete"}
                     />

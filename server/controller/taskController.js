@@ -78,4 +78,28 @@ const completedTask = async (req, res) => {
     console.error(error);
   }
 };
-export { createTask, getAllTask, getPendingTask, updateStatus, completedTask };
+
+//  deleted if completed --------------->
+
+const delTask = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const existId = await Tasks.findOne({ _id: id });
+    if (existId) {
+      await Tasks.deleteOne({ _id: id });
+      res.status(201).json({ msg: "Deleted" });
+    }
+  } catch (error) {
+    res.status(501).json({ err: "Internal server error" });
+    console.error(error);
+  }
+};
+
+export {
+  createTask,
+  getAllTask,
+  getPendingTask,
+  updateStatus,
+  completedTask,
+  delTask,
+};
