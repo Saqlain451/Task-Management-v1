@@ -4,28 +4,34 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 const AddTask = () => {
-  const { setIsShowModel,api } = useGlobalHook();
+  const { setIsShowModel, api } = useGlobalHook();
   const [addData, setAddData] = useState({
     taskTitle: "",
     taskDes: "",
     startTime: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
   const changeChandle = (e) => {
     const { name, value } = e.target;
     setAddData({ ...addData, [name]: value });
   };
 
   const submitHandler = async () => {
+    setIsLoading(true);
     const user = Cookies.get("user");
     const userDet = JSON.parse(user);
     const { mail } = userDet;
     const newData = { ...addData, mail };
-    console.log(newData);
     try {
-      const response = await axios.post(`${api}/addTask`,{...newData});
-      console.log(response);
+      const response = await axios.post(`${api}/addTask`, { ...newData });
+      if (response.status === 201) {
+        console.log(response.data.msg);
+        setIsShowModel(false);
+      }
+      setIsShowModel(false);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.err);
     }
   };
   return (
@@ -68,7 +74,7 @@ const AddTask = () => {
           className={"btn-add pointer mx-auto fs-1"}
           onClick={submitHandler}
         >
-          Add Task
+          {isLoading ? <span className={"btn-loader"}></span> : "Add Task"}
         </button>
       </div>
     </>
