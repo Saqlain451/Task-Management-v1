@@ -1,110 +1,159 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
 }
 
-:root{
-    --bg-light: #F7F8FA;
-    --border-color : #EDEFF2;
-    --color-gray-blue: #C3CAD9;
-    --color-blue : #751af6;
+:root {
+  --bg-light: #f7f8fa;
+  --border-color: #edeff2;
+  --color-gray-blue: #c3cad9;
+  --color-blue: #751af6;
 }
 
-html{
-    font-size: 62.5%;
-    font-family: 'Poppins', sans-serif;
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
 }
 
-.text-blue{
-    color: var(--color-blue);
-}
-.text-gray{
-    color: var(--color-gray-blue);
+.text-blue {
+  color: var(--color-blue);
 }
 
-.text-blue-gray{
-    color: #7D8FB3;
+.text-gray {
+  color: var(--color-gray-blue);
 }
 
-.pointer{
-    cursor: pointer;
+.text-blue-gray {
+  color: #7d8fb3;
 }
 
-.home{
-    background: #f7f8fa;
-    height: 100vh;
-    width: 100%;
+.pointer {
+  cursor: pointer;
 }
 
-.bar-icon{
-    width: 4rem;
-    height: 4rem;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px 0 #26334D08;
+.home {
+  background: #f7f8fa;
+  height: 100%;
+  width: 100%;
 }
 
-.task-management{
-    display: grid;
-    grid-template-columns: 80% 20%;
-    align-items: center;
-    justify-content: center;
-}
-.tasks{
-    width: 100%;
-    border-right: 2px solid #EDEFF2;
-    height: auto;
-    padding: 2rem;
+.bar-icon {
+  width: 4rem;
+  height: 4rem;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 #26334d08;
 }
 
-.all-task{
-    width: 100%;
-    background: white;
-    border-radius: 1rem;
-    height: auto;
-}
-.btn-add{
-    width: 12rem;
-    height: 3.4rem;
-    background: #8833FF;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px 0 #8833FF26;
-    color: white;
-    border: none;
-}
-.btn-add span{
-    width: 2.5rem;
-    height: 3.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.task-management {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-wrapper{
-    background: #f7f8fa;
-    backdrop-filter: blur(10px);
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
+.tasks {
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  border-right: 2px solid #edeff2;
+}
+
+
+.all-task {
+  width: 100%;
+  background: white;
+  border-radius: 1rem;
+  height: auto;
+}
+
+.btn-add {
+  width: 12rem;
+  height: 3.4rem;
+  background: #8833ff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px 0 #8833ff26;
+  color: white;
+  border: none;
+}
+
+.btn-add span {
+  width: 2.5rem;
+  height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-wrapper {
+  background: #f7f8fa;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 
 .modal-box {
-    width: 27%;
-    height: auto;
-    border-radius: 0.5rem;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    padding: 2rem;
-    gap: 1rem;
-    background: white;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
+  width: 27%;
+  height: auto;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 2rem;
+  gap: 1rem;
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.task-card {
+  border-radius: 0.5rem;
+}
+
+.task-card .card-img {
+  background: white;
+  padding: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+.task-card .card-img img {
+  width: 25%;
+  height: auto;
+  aspect-ratio: 512/512;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.task-card h1{
+  color:  #6B7A99;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+
+.task-card p{
+  font-size: 1.15rem;
+  margin-top: 0.5rem;
+  color: #6B7A99;
+}
+
+.task-card button {
+  border: none;
+  background: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px 0 #26334d08;
+  color: #7d8fb3;
+  font-weight: 500;
+  cursor: pointer;
 }

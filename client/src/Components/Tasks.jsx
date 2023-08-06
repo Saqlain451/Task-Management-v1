@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Card from "./Card.jsx";
 import Cookies from "js-cookie";
 import axios from "axios";
+import picsAvater from "../Hooks/Data.jsx";
 
 const Tasks = () => {
   const { setIsShowModel, getAllData, allTaskData, isBtnActive, api } =
@@ -29,7 +30,6 @@ const Tasks = () => {
   };
 
   const delTask = async ({ id }) => {
-    console.log(id)
     try {
       const response = await axios.delete(`${api}/deleteTask/${id}`);
       console.log(response);
@@ -46,6 +46,7 @@ const Tasks = () => {
       getAllData(`${api}/getTask/${mail}`);
     }
   }, []);
+
   return (
     <>
       <div className="task-management">
@@ -60,6 +61,7 @@ const Tasks = () => {
               <div className={"grid-3 grid-md-2 grid-sm-1 g-2 p-4"}>
                 {allTaskData.map((data) => {
                   const { _id } = data;
+                  const num = Math.floor(Math.random() * picsAvater.length);
                   return (
                     <Card
                       {...data}
@@ -68,6 +70,7 @@ const Tasks = () => {
                       id={_id}
                       btnName={"Start"}
                       cardColor={"#f7f8fa"}
+                      imgsrc={picsAvater[num]}
                     />
                   );
                 })}
@@ -77,6 +80,7 @@ const Tasks = () => {
             {isBtnActive.Pending && (
               <div className={"grid-3 grid-md-2 grid-sm-1 g-2 p-4"}>
                 {allTaskData.map((data) => {
+                  const num = Math.floor(Math.random() * picsAvater.length);
                   const { _id } = data;
                   return (
                     <Card
@@ -85,6 +89,8 @@ const Tasks = () => {
                       startWork={completedTask}
                       id={_id}
                       btnName={"Completed"}
+                      cardColor={"#70C19A"}
+                      imgsrc={picsAvater[num]}
                     />
                   );
                 })}
@@ -95,6 +101,7 @@ const Tasks = () => {
               <div className={"grid-3 grid-md-2 grid-sm-1 g-2 p-4"}>
                 {allTaskData.map((data) => {
                   const { _id } = data;
+                  const num = Math.floor(Math.random() * picsAvater.length);
                   return (
                     <Card
                       {...data}
@@ -102,6 +109,8 @@ const Tasks = () => {
                       startWork={delTask}
                       id={_id}
                       btnName={"Delete"}
+                      imgsrc={picsAvater[num]}
+                      cardColor={"#C37A6B"}
                     />
                   );
                 })}
