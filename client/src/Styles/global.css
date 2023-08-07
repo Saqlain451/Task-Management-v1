@@ -178,7 +178,26 @@ html {
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
+}
 
+.status{
+  position: relative;
+  padding: 0.7rem 1rem;
+}
+.status span{
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 0.65rem;
+  color: white;
+  position: absolute;
+  top: 8%;
+  right: -3%;
+  font-weight: 700;
 }
 
 @keyframes spin {

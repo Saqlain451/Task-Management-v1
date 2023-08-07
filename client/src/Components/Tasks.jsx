@@ -1,7 +1,7 @@
 import TaskHeader from "./TaskHeader.jsx";
 import { useGlobalHook } from "../Hooks/Context.jsx";
 // eslint-disable-next-line no-unused-vars
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -21,10 +21,17 @@ const Tasks = () => {
     isError,
   } = useGlobalHook();
   const navigate = useNavigate();
+
+  const [work, setWork] = useState({
+    start: "",
+    completed: "",
+    del: "",
+  });
   const startWoking = async ({ id }) => {
     try {
       const response = await axios.patch(`${api}/updateTask/working`, { id });
       console.log(response);
+      setWork({ start: response.data.msg });
     } catch (error) {
       console.error(error);
     }
@@ -34,6 +41,7 @@ const Tasks = () => {
     try {
       const response = await axios.patch(`${api}/updateTask/completed`, { id });
       console.log(response);
+      setWork({ completed: response.data.msg });
     } catch (error) {
       console.error(error);
     }
@@ -43,6 +51,7 @@ const Tasks = () => {
     try {
       const response = await axios.delete(`${api}/deleteTask/${id}`);
       console.log(response);
+      setWork({ del: response.data.msg });
     } catch (error) {
       console.error(error);
     }
@@ -55,7 +64,7 @@ const Tasks = () => {
       const { mail } = userDet;
       getAllData(`${api}/getTask/${mail}`);
     }
-  }, []);
+  }, [work]);
 
   return (
     <>
@@ -114,7 +123,6 @@ const Tasks = () => {
                   className={"d-flex center fs-1-5"}
                   style={{ height: "70vh" }}
                 >
-                  {" "}
                   No Pending Task Found
                 </p>
               ) : (

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Tasks from "../Components/Tasks.jsx";
 import Navbar from "../Components/Navbar.jsx";
-import AddTask from "../Components/AddTask.jsx";
-import {useGlobalHook} from "../Hooks/Context.jsx";
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
 
 const Home = () => {
   const navigate = useNavigate();
