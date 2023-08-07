@@ -145,6 +145,12 @@
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
     }
+    .g-md-1{
+        gap: 1rem;
+    }
+    .g-md-2{
+        gap: 2rem;
+    }
 }
 
 @media (width < 500px) {
@@ -156,5 +162,11 @@
     .grid-sm-2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+    }
+    .g-sm-1{
+        gap: 1rem;
+    }
+    .g-sm-2{
+        gap: 2rem;
     }
 }

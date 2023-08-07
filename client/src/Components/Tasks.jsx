@@ -1,13 +1,15 @@
 import TaskHeader from "./TaskHeader.jsx";
 import { useGlobalHook } from "../Hooks/Context.jsx";
+// eslint-disable-next-line no-unused-vars
 import { useEffect } from "react";
 import Card from "./Card.jsx";
 import Cookies from "js-cookie";
 import axios from "axios";
 import picsAvater from "../Hooks/Data.jsx";
+import TaskGraphs from "./Graph.jsx";
 
 const Tasks = () => {
-  const { setIsShowModel, getAllData, allTaskData, isBtnActive, api } =
+  const { setIsShowModel, getAllData, allTaskData, isBtnActive, api, count } =
     useGlobalHook();
 
   const startWoking = async ({ id }) => {
@@ -58,7 +60,7 @@ const Tasks = () => {
               }}
             />
             {isBtnActive.Active && (
-              <div className={"grid-3 grid-md-2 grid-sm-1 g-2 p-4"}>
+              <div className={"grid-3 grid-md-2 grid-lg-2 grid-sm-1 g-2 p-4 p-md-2"}>
                 {allTaskData.map((data) => {
                   const { _id } = data;
                   const num = Math.floor(Math.random() * picsAvater.length);
@@ -78,7 +80,7 @@ const Tasks = () => {
             )}
 
             {isBtnActive.Pending && (
-              <div className={"grid-3 grid-md-2 grid-sm-1 g-2 p-4"}>
+              <div className={"grid-3 grid-md-2 grid-lg-2 grid-sm-1 g-2 p-4 p-md-2"}>
                 {allTaskData.map((data) => {
                   const num = Math.floor(Math.random() * picsAvater.length);
                   const { _id } = data;
@@ -89,7 +91,7 @@ const Tasks = () => {
                       startWork={completedTask}
                       id={_id}
                       btnName={"Completed"}
-                      cardColor={"#70C19A"}
+                      cardColor={"rgba(255,160,122,0.25)"}
                       imgsrc={picsAvater[num]}
                     />
                   );
@@ -98,7 +100,7 @@ const Tasks = () => {
             )}
 
             {isBtnActive.Completed && (
-              <div className={"grid-3 grid-md-2 grid-sm-1 g-2 p-4"}>
+              <div className={"grid-3 grid-md-2 grid-lg-2 grid-sm-1 g-2 p-4 p-md-2"}>
                 {allTaskData.map((data) => {
                   const { _id } = data;
                   const num = Math.floor(Math.random() * picsAvater.length);
@@ -110,7 +112,7 @@ const Tasks = () => {
                       id={_id}
                       btnName={"Delete"}
                       imgsrc={picsAvater[num]}
-                      cardColor={"#C37A6B"}
+                      cardColor={"#C8FAC8FF"}
                     />
                   );
                 })}
@@ -118,7 +120,13 @@ const Tasks = () => {
             )}
           </div>
         </div>
-        <div className="task-gaph"></div>
+        <div className="task-gaph p-2">
+          <TaskGraphs
+            completedWork={count.completed}
+            pendingWork={count.pending}
+            totalWork={count.active}
+          />
+        </div>
       </div>
     </>
   );

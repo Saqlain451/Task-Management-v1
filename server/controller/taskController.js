@@ -31,8 +31,21 @@ const getAllTask = async (req, res) => {
   const { mail } = req.params;
   try {
     const taskData = await Tasks.find({ mail });
+    const pending = await Tasks.find({
+      mail,
+      status: "Working",
+    });
+    const completed = await Tasks.find({
+      mail,
+      status: "Completed",
+    });
     taskData.length
-      ? res.status(201).json({ success: taskData })
+      ? res.status(201).json({
+          success: taskData,
+          all: taskData.length,
+          pending: pending.length,
+          completed: completed.length,
+        })
       : res.status(401).json({ err: "Don't have any data" });
   } catch (error) {
     console.error(error);
@@ -42,9 +55,25 @@ const getAllTask = async (req, res) => {
 const getPendingTask = async (req, res) => {
   const { mail, status } = req.params;
   try {
+    const all = await Tasks.find({ mail });
+    const pending = await Tasks.find({
+      mail,
+      status: "Working",
+    });
+    const completed = await Tasks.find({
+      mail,
+      status: "Completed",
+    });
     const data = await Tasks.find({ mail, status });
     data.length
-      ? res.status(201).json({ success: data })
+      ? res
+          .status(201)
+          .json({
+            success: data,
+            pending: pending.length,
+            all: all.length,
+            completed: completed.length,
+          })
       : res.status(401).json({ err: "Don't have any data" });
   } catch (error) {
     res.status(501).json({ err: "Internal server Error" });

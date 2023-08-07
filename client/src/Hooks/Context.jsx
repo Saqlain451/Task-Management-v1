@@ -104,12 +104,21 @@ const AppProvider = ({ children }) => {
 
   // ---------------------Get all task ----------------->
   const [allTaskData, setAllTaskData] = useState([]);
-
+  const [count, setCount] = useState({
+    active: 0,
+    pending: 0,
+    completed: 0,
+  });
   const getAllData = async (url) => {
     try {
       const response = await axios.get(url);
+      const { all, pending, completed } = response.data;
       setAllTaskData(response.data.success);
-      console.log(response);
+      setCount({
+        active: all,
+        pending,
+        completed,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -200,7 +209,8 @@ const AppProvider = ({ children }) => {
         addData,
         changeChandle,
         submitHandler,
-        isLoading
+        isLoading,
+        count
       }}
     >
       {children}

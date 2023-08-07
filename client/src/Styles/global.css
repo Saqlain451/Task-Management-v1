@@ -53,7 +53,6 @@ html {
 .task-management {
   display: grid;
   grid-template-columns: 80% 20%;
-  align-items: center;
   justify-content: center;
 }
 
@@ -88,6 +87,18 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (width<=441px) {
+  .btn-add{
+    width: 9rem;
+    height: 3rem;
+    font-size: 0.8rem;
+  }
+  .btn-add span{
+    width: 2rem;
+    height: 3rem;
+  }
 }
 
 .modal-wrapper {
@@ -156,4 +167,26 @@ html {
   color: #7d8fb3;
   font-weight: 500;
   cursor: pointer;
+}
+
+.graph-box{
+  width: 100%;
+  height: auto;
+  border: 2px solid #EDEFF2;
+  border-radius: 0.5rem;
+}
+
+@media (width<=1000px) {
+  .task-management{
+    grid-template-columns: 70% 30%;
+  }
+}
+
+@media (width<=768px) {
+  .task-management{
+    grid-template-columns: 100%;
+  }
+  .task-management .tasks{
+    order: 2;
+  }
 }

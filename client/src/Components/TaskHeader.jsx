@@ -19,7 +19,7 @@ const TaskHeader = ({btnClick}) => {
         <p className={"fs-1-5 text-blue-gray"}>
           <BsFillHandbagFill />
         </p>
-        <ul className={"d-flex center g-3"}>
+        <ul className={"d-flex center g-3 g-sm-1 g-md-2"}>
           <li className={"pointer text-blue-gray fw-5"} onClick={navBtnClick}>Active</li>
           <li className={"pointer text-blue-gray fw-5"} onClick={navBtnClick}>Pending</li>
           <li className={"pointer text-blue-gray fw-5"} onClick={navBtnClick}>Completed</li>
