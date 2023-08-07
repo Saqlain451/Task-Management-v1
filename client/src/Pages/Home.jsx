@@ -8,7 +8,6 @@ import {useGlobalHook} from "../Hooks/Context.jsx";
 
 const Home = () => {
   const navigate = useNavigate();
-  const {isShowModal} = useGlobalHook()
   useEffect(() => {
     const user = Cookies.get("user");
     !user && navigate("/login");
@@ -19,7 +18,6 @@ const Home = () => {
     <>
       <div className="home">
         <Navbar />
-        {isShowModal && <AddTask />}
         <Tasks />
       </div>
 

@@ -1,6 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
 //create context
@@ -109,11 +109,17 @@ const AppProvider = ({ children }) => {
     pending: 0,
     completed: 0,
   });
+
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [isError, setIsError] = useState(false);
   const getAllData = async (url) => {
+    setIsLoadingData(true);
+    setIsError(false);
     try {
       const response = await axios.get(url);
       const { all, pending, completed } = response.data;
       setAllTaskData(response.data.success);
+      response.data.success && setIsLoadingData(false);
       setCount({
         active: all,
         pending,
@@ -121,13 +127,15 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       console.error(error);
+      error && setIsLoadingData(false);
+      error && setIsError(true);
     }
   };
 
   // toggle button click functionality ----->
 
   const [isBtnActive, setisBtnActive] = useState({
-    Active: true,
+    Tasks: true,
     Pending: false,
     Completed: false,
   });
@@ -138,52 +146,12 @@ const AppProvider = ({ children }) => {
     const { mail } = userDet;
     const btnName = e.target.innerText;
     setisBtnActive({ [btnName]: true });
-    if (btnName === "Active") {
+    if (btnName === "Tasks") {
       getAllData(`${api}/getTask/${mail}`);
     } else if (btnName === "Pending") {
       getAllData(`${api}/getTask/${mail}/Working`);
     } else if (btnName === "Completed") {
       getAllData(`${api}/getTask/${mail}/Completed`);
-    }
-  };
-
-  // add task part ------------------------------>
-
-  const [addData, setAddData] = useState({
-    taskTitle: "",
-    taskDes: "",
-    startTime: "",
-  });
-
-  const changeChandle = (e) => {
-    const { name, value } = e.target;
-    setAddData({ ...addData, [name]: value });
-  };
-  const [isLoading, setIsLoading] = useState(false);
-  const submitHandler = async () => {
-    setIsLoading(true);
-    const user = Cookies.get("user");
-    const userDet = JSON.parse(user);
-    const { mail } = userDet;
-    const newData = { ...addData, mail };
-    try {
-      const response = await axios.post(`${api}/addTask`, { ...newData });
-      if (response.status === 201) {
-        toast.success(response.data.msg, {
-          position: "top-center",
-          autoClose: 2000,
-          theme: "light",
-        });
-        setIsLoading(false);
-      }
-      setIsShowModel(false);
-    } catch (error) {
-      setIsLoading(false);
-      toast.error(error.response.data.err, {
-        position: "top-center",
-        autoClose: 2000,
-        theme: "light",
-      });
     }
   };
 
@@ -206,11 +174,9 @@ const AppProvider = ({ children }) => {
         allTaskData,
         isBtnActive,
         navBtnClick,
-        addData,
-        changeChandle,
-        submitHandler,
-        isLoading,
-        count
+        count,
+        isLoadingData,
+        isError
       }}
     >
       {children}

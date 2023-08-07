@@ -54,21 +54,29 @@ html {
   display: grid;
   grid-template-columns: 80% 20%;
   justify-content: center;
+
 }
 
 .tasks {
   width: 100%;
-  height: auto;
+  height: 140vh;
   padding: 2rem;
-  border-right: 2px solid #edeff2;
+  overflow-y: scroll;
 }
 
+.tasks::-webkit-scrollbar{
+  display: none;
+}
 
 .all-task {
   width: 100%;
   background: white;
   border-radius: 1rem;
-  height: auto;
+  height: 145vh;
+}
+
+.tasks-inner{
+  background: white;
 }
 
 .btn-add {
@@ -89,26 +97,17 @@ html {
   justify-content: center;
 }
 
-@media (width<=441px) {
-  .btn-add{
+@media (width <= 441px) {
+  .btn-add {
     width: 9rem;
     height: 3rem;
     font-size: 0.8rem;
   }
-  .btn-add span{
+
+  .btn-add span {
     width: 2rem;
     height: 3rem;
   }
-}
-
-.modal-wrapper {
-  background: #f7f8fa;
-  backdrop-filter: blur(10px);
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
 }
 
 .modal-box {
@@ -119,10 +118,6 @@ html {
   padding: 2rem;
   gap: 1rem;
   background: white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
@@ -145,16 +140,16 @@ html {
   margin: auto;
 }
 
-.task-card h1{
-  color:  #6B7A99;
+.task-card h1 {
+  color: #6b7a99;
   font-size: 1.3rem;
   text-transform: capitalize;
 }
 
-.task-card p{
+.task-card p {
   font-size: 1.15rem;
   margin-top: 0.5rem;
-  color: #6B7A99;
+  color: #6b7a99;
 }
 
 .task-card button {
@@ -169,24 +164,48 @@ html {
   cursor: pointer;
 }
 
-.graph-box{
+.graph-box {
   width: 100%;
   height: auto;
-  border: 2px solid #EDEFF2;
+  border: 2px solid #edeff2;
   border-radius: 0.5rem;
 }
 
-@media (width<=1000px) {
-  .task-management{
-    grid-template-columns: 70% 30%;
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-@media (width<=768px) {
-  .task-management{
+
+@media (width <= 1000px) {
+  .task-management {
+    grid-template-columns: 70% 30%;
+  }
+
+}
+
+@media (width <= 768px) {
+  .task-management {
     grid-template-columns: 100%;
   }
-  .task-management .tasks{
+
+  .task-management .tasks {
     order: 2;
+    height: auto;
+    overflow: auto;
   }
 }

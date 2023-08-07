@@ -5,10 +5,12 @@ import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [letter, setLetter] = useState("");
+
   const navigate = useNavigate();
   if (!Cookies.get("user")) {
     navigate("/login");
   }
+
   useEffect(() => {
     if (Cookies.get("user")) {
       const user = Cookies.get("user");
@@ -26,6 +28,10 @@ const Navbar = () => {
         style={{
           height: "8rem",
           borderBottom: "2px solid #EDEFF2",
+          position:"sticky",
+          top : 0,
+          left:0,
+          background: "#f7f8fa"
         }}
       >
         <NavLink to={"/"}>
