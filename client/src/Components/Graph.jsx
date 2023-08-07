@@ -1,17 +1,16 @@
 // src/components/TaskGraphs.js
 
-import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { ArcElement, Chart } from "chart.js";
 
 Chart.register(ArcElement);
 // eslint-disable-next-line react/prop-types
 const TaskGraphs = ({ totalWork, completedWork, pendingWork }) => {
-  const completedPercentage = Math.floor((completedWork / totalWork) * 100);
-  const pendingPercentage = Math.floor((pendingWork / totalWork) * 100);
+  const completedPercentage = Math.floor((completedWork / totalWork) * 100) || 0;
+  const pendingPercentage = Math.floor((pendingWork / totalWork) * 100) || 0;
   const remainingPercentage = Math.floor(
-    100 - (parseFloat(completedPercentage) + parseFloat(pendingPercentage)),
-  );
+    100 - (parseFloat(completedPercentage) + parseFloat(pendingPercentage)) ,
+  ) || 0;
 
   const completedData = {
     labels: ["Completed"],

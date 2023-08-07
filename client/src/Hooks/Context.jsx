@@ -126,7 +126,6 @@ const AppProvider = ({ children }) => {
         completed,
       });
     } catch (error) {
-      console.error(error);
       error && setIsLoadingData(false);
       error && setIsError(true);
     }

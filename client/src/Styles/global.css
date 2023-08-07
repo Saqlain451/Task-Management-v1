@@ -214,7 +214,9 @@ html {
   .task-management {
     grid-template-columns: 70% 30%;
   }
-
+  .modal-box{
+    width: 35%;
+  }
 }
 
 @media (width <= 768px) {
@@ -226,5 +228,15 @@ html {
     order: 2;
     height: auto;
     overflow: auto;
+  }
+
+  .modal-box{
+    width: 55%;
+  }
+}
+
+@media (width<=500px) {
+  .modal-box{
+    width: 90%;
   }
 }
