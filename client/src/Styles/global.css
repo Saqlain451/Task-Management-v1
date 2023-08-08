@@ -258,6 +258,16 @@ html {
   margin: 0 5px;
   animation: scale 1.2s infinite ease-in-out;
 }
+
+.log-out{
+  width: 12rem;
+  height: 5rem;
+  background: white;
+  position: absolute;
+  top: 85%;
+  right: 1%;
+  border-radius: .5rem;
+}
 @keyframes scale {
   0%, 100% {
     transform: scale(1);
