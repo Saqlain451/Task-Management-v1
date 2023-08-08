@@ -65,7 +65,7 @@ const getPendingTask = async (req, res) => {
       mail,
       status: "Completed",
     });
-    const data = await Tasks.find({ mail, status });
+    const data = await Tasks.find({ mail, status }).sort({ createdAt: -1 });
     data.length
       ? res.status(201).json({
           success: data,
